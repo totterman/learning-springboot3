@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     private final VideoService videoService;
+    private final AppConfig appConfig;
 //    private final YouTube youTube;
 
-    public HomeController(VideoService videoService /* , YouTube youTube */ ) {
+    public HomeController(VideoService videoService, AppConfig appConfig /* , YouTube youTube */ ) {
         this.videoService = videoService;
+        this.appConfig = appConfig;
 //        this.youTube = youTube;
     }
 
@@ -35,6 +37,8 @@ youTube.channelVideos("UCcSeeATlWJJbXpOZRYOfaDg",
     public String index(Model model, Authentication authentication) {
         model.addAttribute("videos", videoService.getVideos());
         model.addAttribute("authentication", authentication);
+        model.addAttribute("header", appConfig.header());
+        model.addAttribute("intro", appConfig.intro());
         return "index";
     }
 
@@ -64,6 +68,8 @@ youTube.channelVideos("UCcSeeATlWJJbXpOZRYOfaDg",
         List<VideoEntity> searchResults = videoService.search(search);
         model.addAttribute("search", search);
         model.addAttribute("videos", searchResults);
+        model.addAttribute("header", appConfig.header());
+        model.addAttribute("intro", appConfig.intro());
         model.addAttribute("authentication", authentication);
         return "index";
     }

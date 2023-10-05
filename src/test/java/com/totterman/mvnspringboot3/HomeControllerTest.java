@@ -20,7 +20,7 @@ public class HomeControllerTest {
     @MockBean VideoService videoService;
 
     @Test
-    @WithMockUser
+    @WithMockUser(username = "user", roles = "USER")
     void indexPageHasSeveralHtmlForms() throws Exception {
         String html = mvc.perform(
             get("/"))

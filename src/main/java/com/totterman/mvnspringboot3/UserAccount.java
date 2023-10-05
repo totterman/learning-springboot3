@@ -46,8 +46,16 @@ public class UserAccount {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<GrantedAuthority> getAuthorities() {
@@ -55,6 +63,10 @@ public class UserAccount {
             this.authorities = new ArrayList<>();
         }
         return authorities;
+    }
+
+    public void setAuthorities(List<GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
@@ -104,6 +116,14 @@ public class UserAccount {
     public String toString() {
         return "UserAccount [id=" + id + ", username=" + username + ", password=" + password + ", authorities="
                 + authorities + "]";
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

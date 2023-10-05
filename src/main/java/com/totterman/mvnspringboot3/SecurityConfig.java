@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+
     /*
      * @Bean
      * public UserDetailsService UserDetailsService() {
@@ -53,6 +54,15 @@ public class SecurityConfig {
      * }
      */
 
+
+/*
+    @Bean
+    CommandLineRunner initUsers(UserManagementRepository repository, AppConfig appConfig) {
+        return args -> {
+            repository.saveAll(appConfig.users());
+        };
+    }
+*/
     @Bean
     CommandLineRunner initUsers(UserManagementRepository repository) {
         return args -> {
@@ -94,5 +104,16 @@ public class SecurityConfig {
                 .httpBasic(withDefaults());
         return http.build();
     }
-
+/*
+    @Bean
+    @ConfigurationPropertiesBinding
+    Converter<String, GrantedAuthority> converter() {
+        return new Converter<String, GrantedAuthority>() {
+            @Override
+            public GrantedAuthority convert(String source) {
+                return new SimpleGrantedAuthority(source);
+            }
+        };
+    }
+*/
 }
